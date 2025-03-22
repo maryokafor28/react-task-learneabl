@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addUser, updateUser } from '../store/userSlice';
+import { addUser, updateUser } from '../slices/userSlice';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AppDispatch, RootState } from '../store/store';
+import { AppDispatch, RootState } from '../redux/store';
 
 
 interface UserFormProps {

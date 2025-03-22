@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchUsers, deleteUser } from "../store/userSlice";
-import { RootState, AppDispatch } from "../store/store";
+import { fetchUsers, deleteUser } from "../slices/userSlice";
+import { RootState, AppDispatch } from "../redux/store";
 import "../App.css"
 
 
