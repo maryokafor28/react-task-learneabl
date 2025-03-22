@@ -114,3 +114,31 @@ width: 100%;
 .form-container button:hover{
   background-color: darkblue;
 }
+@media (max-width: 480px) {
+  .user-card {
+     padding: 15px;
+     width: 100%;
+  }
+
+  .username {
+     font-size: 18px;
+     margin-bottom: 30px;
+  }
+
+  .user-actions {
+     gap: 15px;
+  }
+
+  .add-user-btn {
+     padding: 12px 20px;
+  }
+
+  .form-container h2 {
+     font-size: 25px;
+  }
+
+  .form-container input, .form-container button {
+     padding: 12px 25px;
+     font-size: 14px;
+  }
+}

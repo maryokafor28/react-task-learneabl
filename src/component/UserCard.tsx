@@ -25,7 +25,7 @@ const UserCard = ({ user }: UserProps) => {
     <div>
       <h3>{displayUser.name}</h3>
       <p>Email: {displayUser.email}</p>
-      <p>Address: {displayUser.address},</p>
+      <p>Address: {displayUser.address },</p>
 
       {!user && (
         <button>

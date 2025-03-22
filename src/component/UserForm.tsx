@@ -27,6 +27,7 @@ const UserForm = ({ onCancel }: UserFormProps) => {
   useEffect(() => {
     if (existingUser) {
       setUserData(existingUser);
+      
     }
   }, [existingUser]);
 
@@ -43,7 +44,7 @@ const UserForm = ({ onCancel }: UserFormProps) => {
     if (existingUser) {
       dispatch(updateUser({ id: Number(id), ...userData }));
     } else {
-      dispatch(addUser(userData));
+      dispatch(addUser({id: Date.now(),...userData}));
     }
     navigate('/users');
   };
