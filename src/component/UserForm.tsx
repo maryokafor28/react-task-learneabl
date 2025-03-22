@@ -4,6 +4,7 @@ import { addUser, updateUser } from '../store/userSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AppDispatch, RootState } from '../store/store';
 
+
 interface UserFormProps {
   onCancel?: () => void;
 }
@@ -48,41 +49,38 @@ const UserForm = ({ onCancel }: UserFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='form-container' onSubmit={handleSubmit}>
       <h2>{existingUser ? 'Edit User' : 'Add User'}</h2>
-      <input
+    <div><label> Name:</label>  <input
         type="text"
         name="name"
         value={userData.name}
         onChange={handleChange}
         placeholder="Name"
-        required
+    
       />
-      <input
+      </div>
+      <div><label> Email:</label>  <input
+
         type="email"
         name="email"
         value={userData.email}
         onChange={handleChange}
         placeholder="Email"
-        required
+        
       />
-      <input
-        type="text"
-        name="address.street"
+      </div>
+         <div><label> Address:</label>  <input
+
+        type="address"
+        name="address"
         value={userData.address}
         onChange={handleChange}
-        placeholder="Street"
-        required
+        placeholder="address"
+        
       />
-      <input
-        type="text"
-        name="address.city"
-        value={userData.address}
-        onChange={handleChange}
-        placeholder="City"
-        required
-      />
-      <button type="submit">{existingUser ? 'Update' : 'Add'}</button>
+     </div>
+      <button className='add-btn' type="submit">{existingUser ? 'Update' : 'Add'}</button>
       
       {onCancel && <button type="button" onClick={onCancel}>Cancel</button>}
     </form>
