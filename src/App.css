@@ -1,0 +1,73 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.user-container {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center; 
+ background-color: #f8f9fa;
+ /* box-shadow: 0 0 10 px rgba(0,0,0,0); */
+
+}
+ .user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 5px;
+  margin-top: 30px;
+ }
+ .user-card {
+  padding: 55px 55px;
+  border: 1px solid #ddd;
+  background: #f8f9fa;
+  box-shadow: 0 2px 5px;
+  text-align: center;
+  width: 100%;
+  text-decoration: none;
+ }
+ .username {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 55px;
+ }
+ .user-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 25px;
+ }
+
+ .user-actions button {
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #fff;
+ }
+ .edit-btn {
+  background-color: blue;
+  
+ }
+ .edit-btn:hover{
+  background-color: darkblue;
+ }
+ .delete-btn {
+  background-color: red;
+  
+ }
+ .delete-btn:hover {
+  background-color: darkred;
+ }
+.add-user-btn {
+  background-color: blue;
+  color: #fff;
+  padding: 15px 25px;
+  margin-top: 25px;
+  cursor: pointer;
+}
+.add-user-btn:hover{
+  background-color: darkblue;
+}
