@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+export interface Address {
+  city: string
+  street:string
+}
 export interface User {
   id: number;
   name: string;

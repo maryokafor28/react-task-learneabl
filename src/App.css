@@ -45,17 +45,17 @@
   padding: 8px 15px;
   cursor: pointer;
   font-size: 16px;
-  color: #fff;
+
  }
  .edit-btn {
-  background-color: #007bff;
+  color: blue;
   
  }
  .edit-btn:hover{
   background-color: darkblue;
  }
  .delete-btn {
-  background-color: red;
+  color: red;
   
  }
  .delete-btn:hover {
