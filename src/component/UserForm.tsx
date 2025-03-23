@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addUser, updateUser } from '../slices/userSlice';
-import { useNavigate, useParams } from 'react-router-dom';
-import { AppDispatch, RootState } from '../redux/store';
-
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, updateUser } from "../slices/userSlice";
+import { useNavigate, useParams } from "react-router-dom";
+import { AppDispatch, RootState } from "../redux/store";
+import "../App.css"
 
 interface UserFormProps {
   onCancel?: () => void;
@@ -19,70 +19,81 @@ const UserForm = ({ onCancel }: UserFormProps) => {
   );
 
   const [userData, setUserData] = useState({
-    name: '',
-    email: '',
-    address: '',
+    name: "",
+    email: "",
+    address: { street: "", city: "" },
   });
 
   useEffect(() => {
     if (existingUser) {
-      setUserData(existingUser);
-      
+      setUserData({
+        name: existingUser.name || "",
+        email: existingUser.email || "",
+        address: typeof existingUser.address === "string"
+          ? { street: existingUser.address, city: "" }
+          : existingUser.address || { street: "", city: "" },
+      });
     }
   }, [existingUser]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUserData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+
+    if (name === "street" || name === "city") {
+      setUserData((prev) => ({
+        ...prev,
+        address: { ...prev.address, [name]: value },
+      }));
+    } else {
+      setUserData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const formattedUserData = {
+      ...userData,
+      address: { 
+        street: userData.address.street, 
+        city: userData.address.city 
+      }, 
+    };
+
     if (existingUser) {
-      dispatch(updateUser({ id: Number(id), ...userData }));
+      dispatch(updateUser({ id: Number(id), ...formattedUserData }));
     } else {
-      dispatch(addUser({id: Date.now(),...userData}));
+      dispatch(addUser({ id: Date.now(), ...formattedUserData }));
     }
-    navigate('/users');
+
+    navigate("/users");
   };
 
   return (
-    <form className='form-container' onSubmit={handleSubmit}>
-      <h2>{existingUser ? 'Edit User' : 'Add User'}</h2>
-    <div><label> Name:</label>  <input
-        type="text"
-        name="name"
-        value={userData.name}
-        onChange={handleChange}
-        placeholder="Name"
-    
-      />
+    <form className="form-container" onSubmit={handleSubmit}>
+      <h2>{existingUser ? "Edit User" : "Add User"}</h2>
+      <div>
+        <label>Name:</label>
+        <input type="text" name="name" value={userData.name} onChange={handleChange} placeholder="Name" />
       </div>
-      <div><label> Email:</label>  <input
-
-        type="email"
-        name="email"
-        value={userData.email}
-        onChange={handleChange}
-        placeholder="Email"
-        
-      />
+      <div>
+        <label>Email:</label>
+        <input type="email" name="email" value={userData.email} onChange={handleChange} placeholder="Email" />
       </div>
-         <div><label> Address:</label>  <input
+      <div>
+        <label>Street:</label>
+        <input type="text" name="street" value={userData.address.street} onChange={handleChange} placeholder="Street" />
+      </div>
+      <div>
+        <label>City:</label>
+        <input type="text" name="city" value={userData.address.city} onChange={handleChange} placeholder="City" />
+      </div>
+      <p>Address: {userData.address.street}, {userData.address.city}</p>
 
-        type="address"
-        name="address"
-        value={userData.address}
-        onChange={handleChange}
-        placeholder="address"
-        
-      />
-     </div>
-      <button className='add-btn' type="submit">{existingUser ? 'Update' : 'Add'}</button>
-      
+      <button className="add-btn" type="submit">{existingUser ? "Update" : "Add"}</button>
       {onCancel && <button type="button" onClick={onCancel}>Cancel</button>}
     </form>
   );
