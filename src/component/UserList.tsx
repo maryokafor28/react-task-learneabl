@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchUsers, deleteUser } from "../slices/userSlice";
+import { fetchUsers, deleteUserLocal } from "../slices/userSlice";
 import { RootState, AppDispatch } from "../redux/store";
 
 const UserList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { users, loading, error } = useSelector((state: RootState) => state.users);
+  const { users, loading, error } = useSelector(
+    (state: RootState) => state.users
+  );
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -15,7 +17,7 @@ const UserList: React.FC = () => {
 
   const handleDelete = (id: number) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
-      dispatch(deleteUser(id));
+      dispatch(deleteUserLocal(id));
     }
   };
 
@@ -34,21 +36,29 @@ const UserList: React.FC = () => {
           users.map((user) => (
             <li className="user-card" key={user.id}>
               <p className="username">{user.name}</p>
-              
-              
+
               <p>Email: {user.email ? user.email : "No email available"}</p>
 
-        
               <p>
                 Address:{" "}
                 {user.address && typeof user.address === "object"
-                  ?` ${user.address.street}, ${user.address.city}`
+                  ? ` ${user.address.street}, ${user.address.city}`
                   : "No address available"}
               </p>
 
               <div className="user-actions">
-                <button className="edit-btn" onClick={() => navigate(`/edit-user/${user.id}`)}>Edit</button>
-                <button className="delete-btn" onClick={() => handleDelete(user.id)}>Delete</button>
+                <button
+                  className="edit-btn"
+                  onClick={() => navigate(`/edit-user/${user.id}`)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="delete-btn"
+                  onClick={() => handleDelete(user.id)}
+                >
+                  Delete
+                </button>
               </div>
             </li>
           ))
