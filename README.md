@@ -1,54 +1,36 @@
-# React + TypeScript + Vite
+USER MANAGEMENT APP
+A simple React + Redux Toolkit application to manage users.
+Features include adding, editing, deleting, and viewing users with data persistence using both API (for demo data) and localStorage (to save your changes after refresh).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FEATURES
+View Users: Fetches initial users from JSONPlaceholder API.
 
-Currently, two official plugins are available:
+Add Users: Add new users via form. Saved in Redux and localStorage.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Edit Users: Update existing user details. Changes persist after refresh.
 
-## Expanding the ESLint configuration
+Delete Users: Remove users from the list.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Persistent Data: Uses localStorage to keep custom users even after refreshing.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Routing: Navigate between pages (/users, /add-user, /edit-user/:id).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+TECH STACK
+React – UI library
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Redux Toolkit – State management
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+React Router – Navigation
+
+TypeScript – Type safety
+
+Axios – API calls
+
+LocalStorage – Data persistence
+
+API Used
+We fetch demo users from:
+
+https://jsonplaceholder.typicode.com/users
+
+
